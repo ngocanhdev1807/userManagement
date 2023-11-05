@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.gradient-bg {
+  background-image: linear-gradient(45deg, #2196f3, #ff5722);
+  background-size: 200% 200%;
+  animation: gradientAnimation 3s linear infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Button Transition */
+.button-transition {
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-transition:hover {
+  background-color: #4a90e2; /* Change to the desired hover color */
+  transform: scale(1.05);
+}
+
+/*  */
+.bg-gradient-animated {
+  background: linear-gradient(to right, #00c6fb, #005bea);
+  background-size: 200% 100%;
+  animation: gradientTransition 3s linear infinite;
+}
+
+@keyframes gradientTransition {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+@keyframes gradientTransition {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradientTransition 4s linear infinite;
+  background: linear-gradient(45deg, #ff0080, #7928ca, #ff0080);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  color: transparent;
+}
