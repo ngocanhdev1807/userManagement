@@ -88,9 +88,7 @@ export default class User {
   constructor(input: User_Input_Type) {
     const date = new Date()
     this._id = input._id
-    // this.name = limitProductsArray(input.name, 3) || limitProductsArray([], 3)
     this.check = {
-      // checkStatus: (input.check && input.check.checkStatus) || false,
       checkStatus: {
         isCheck: input.check?.checkStatus?.isCheck || false,
         date: input.check?.checkStatus?.date || new Date().toISOString()

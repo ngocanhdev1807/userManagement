@@ -26,12 +26,6 @@ import Image from '~/models/schemas/Images.schemas'
 import handleUser from '~/utils/user.utils'
 import database, { Collections_Type } from '~/services/database/database'
 
-///////////////////////
-
-// ////////////////cho vào file utils///////////////
-
-///////////////////////////////
-
 class UsersControllers {
   public registerController = wrapRequestHandler(
     async (req: Request<ParamsDictionary, any, RegisterReqBody>, res: Response, next: NextFunction) => {
@@ -239,22 +233,6 @@ class UsersControllers {
 
   public getMeController = wrapRequestHandler(async (req: Request, res: Response, next: NextFunction) => {
     const { user_id } = req.decoded_authorization as TokenPayload // lấy từ accessTokenValidator
-    ////////////cách 1: không cập nhật được thời gian...
-    // const user = await database.getCollection('users').findOne(
-    //   { _id: new ObjectId(user_id) },
-    //   {
-    //     projection: {
-    //       password: 0,
-    //       email_verify_token: 0,
-    //       forgot_password_token: 0
-    //     }
-    //   }
-    // )
-    // return res.json({
-    //   message: 'GET_ME_SUCCESS',
-    //   result: user
-    // })
-    ////////////cách 2: cập nhật thời gian...
     const user = await database.getCollection('users').findOneAndUpdate(
       { _id: new ObjectId(user_id) },
       {
@@ -273,12 +251,7 @@ class UsersControllers {
       }
     )
 
-    ///////////////////////////////////// xử lý name trả về thời gian thực......
     const findName = (searchName: string, dataArray: any[]) => find(dataArray, { name: searchName })
-    //  // hàm này truyền vào name từ body so sánh với name từ aray names, nếu name từ body = name từ array names thì trả về item trong mảng
-    // // Ví dụ sử dụng hàm
-    // const result = findName('ghfsjhk', [{ name: 'ghfsjhk', fdsd: 4, gdff: 8765 }])
-    //// console.log(result)
     const usersObj = (await database.getCollection('users').findOne({ _id: new ObjectId(user_id) })) as User
     const names = await database
       .getCollection('users')
@@ -300,8 +273,6 @@ class UsersControllers {
               returnTimeEnd: 'Có thể chỉnh sửa'
             })
     }
-    // console.log(time_thoiginthuc)
-    //////////////////////////////////////////////////////////////////////////
 
     const check90days = user.value?.updated_at as Date
     const hienTaiTotal90days = String(calculateDate.addToDate(check90days, '90d').toISOString())
@@ -340,7 +311,6 @@ class UsersControllers {
         return valid
       }
     })
-    ///////
 
     const files = await new Promise<File[]>((resolve, reject) => {
       form.parse(req, (err, fields, files) => {

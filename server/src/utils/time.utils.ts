@@ -20,13 +20,19 @@ import vi from 'date-fns/locale/vi'
 
 class Format_Date {
   public formatDate = (timestamp: number) => format(new Date(timestamp * 1000), 'dd/MM/yyyy hh:mm:ss a') // dùng jwt để convert (iat và exp)...
+  // console.log(Math.floor(Date.now() / 1000)) // 1697681721
+  // console.log(formatDate(Math.floor(Date.now() / 1000))) // 19/10/2023 09:15:21 AM
 
   public formatDateTimeString = (inputDate: string) => format(parseISO(inputDate), 'dd/MM/yyyy hh:mm:ss a')
+  // console.log(new Date().toISOString()) // 2023-10-19T02:18:47.560Z
+  // console.log(formatDateTimeString(new Date().toISOString())) // 19/10/2023 09:17:46 AM
 
   public formatDateTimeStringUpdate = (inputDate: string) =>
     format(parseISO(inputDate), "EEEE 'ngày' d 'tháng' M 'năm' yyyy h:mm:ss a", {
       locale: vi
     })
+  // console.log(formatDateTimeStringUpdate(new Date().toISOString())) // Thứ Năm ngày 19 tháng 10 năm 2023 9:20:01 AM
+  // console.log(formatDateTimeStringUpdate('2023-10-19T02:18:47.560Z')) // Thứ Năm ngày 19 tháng 10 năm 2023 9:18:47 AM
 
   public formatDateTime = (inputDate: string) => format(parseISO(inputDate), 'yyyy-MM-dd HH:mm:ss')
 }

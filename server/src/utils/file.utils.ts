@@ -72,12 +72,6 @@ export const createAndWriteFileUpdate = async ({
       content = JSON.stringify(content)
     }
 
-    // logger.logAsync(
-    //   `Đang tiến hành tạo file ${last(filePath.split('/'))} trong thư mục ${path.dirname(
-    //     filePath
-    //   )} và ghi dữ liệu vào file ${last(filePath.split('/'))}`
-    // )
-
     console.log(
       messageNotification(
         `Đang tiến hành tạo file ${last(filePath.split('/'))} trong thư mục ${path.dirname(
@@ -87,12 +81,6 @@ export const createAndWriteFileUpdate = async ({
     )
 
     await fs.writeFile(filePath, currentContent + content)
-
-    // logger.logAsync(
-    //   `Tạo thư file ${last(filePath.split('/'))} với đường dẫn ${filePath} và ghi dữ liệu vào file ${last(
-    //     filePath.split('/')
-    //   )} thành công`
-    // )
 
     console.log(
       messageNotification(

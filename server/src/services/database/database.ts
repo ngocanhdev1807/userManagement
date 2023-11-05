@@ -26,7 +26,6 @@ export interface Collections_Type {
   devices: Device
 }
 
-///////////////////////////
 class Database {
   private client: MongoClient
   private db: Db

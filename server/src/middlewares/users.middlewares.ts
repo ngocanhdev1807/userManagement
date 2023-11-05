@@ -23,7 +23,6 @@ class UsersMiddlewares {
     try {
       const decoded_authorization = await encoded_decoded_jwt.decoded({
         token: access_token,
-        // secretKey: 'twitter12344321!@#'
         secretKey: loadEnv.output.JWT_SECRET_ACCESS_TOKEN
       })
       if (req) {
