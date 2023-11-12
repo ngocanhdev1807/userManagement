@@ -413,7 +413,10 @@ class UsersControllers {
       const { user_id, verify, exp } = req.decoded_refresh_token as TokenPayload
 
       const [new_access_token, new_refresh_token] = await Promise.all([
-        jwtSecurity.signAccessToken({ payload: { user_id, verify, token_type: 0 }, secretKey: 'twitter12344321!@#' }),
+        jwtSecurity.signAccessToken({
+          payload: { user_id, verify, token_type: 0 },
+          secretKey: loadEnv.output.JWT_SECRET_ACCESS_TOKEN
+        }),
         jwtSecurity.signRefreshToken({
           payload: { user_id, verify, token_type: 1, exp },
           secretKey: loadEnv.output.JWT_SECRET_REFRESH_TOKEN
